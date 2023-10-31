@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FibonacciSequence</string>
+    <string name="button_label_toast">Toast</string>
+    <string name="button_label_count">Count</string>
+    <string name="count_initial_value">1</string>
+    <string name="toast_message">Bilangan Fibonacci</string>
+    <string name="button_label_finish">Reset</string>
+</resources>
