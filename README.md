@@ -1,5 +1,12 @@
 # Fibonacci_Sequence
 
+|  |  |  |
+|-----|------|-----|
+|Nama|Muhammad Rizqi Maulana|
+|NIM|312210360|
+|Kelas|TI.22.A.4|
+|Mata Kuliah|Pemograman Mobile|
+
 ## Apa itu Fibonacci Sequence
 
  - Fibonacci Sequence (Deret angka Fibonacci) adalah deret angka yang diperoleh dengan menjumlahkan dua angka sebelumnya:<br>
@@ -313,6 +320,6 @@ public void countUp(View view) {
 
 ## TAMPILAN PROGRAM SAAT DI RUN
 
-   ![video](gambar/Hasil.mp4)<br>
+   ![gif](gambar/Hasil.gif)<br>
 
 ## **FINISH**
