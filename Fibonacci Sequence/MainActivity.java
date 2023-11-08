@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     private TextView showCount;
     private int count = 0;
+    private long fibN = 0; // Mengubah inisialisasi Fibonacci
     private long fibNMinus1 = 1;
-    private long fibNMinus2 = 0;
     private EditText edit_max_fibonacci;
 
     @Override
@@ -24,13 +24,10 @@ public class MainActivity extends AppCompatActivity {
         edit_max_fibonacci = findViewById(R.id.edit_max_fibonacci);
 
         updateCountDisplay();
-
-        fibNMinus1 = 1;
-        fibNMinus2 = 0;
     }
 
     private void updateCountDisplay() {
-        showCount.setText(String.valueOf(fibNMinus1));
+        showCount.setText(String.valueOf(fibN));
 
         if (count % 4 == 0) {
             showCount.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void showToast(View view){
+    public void showToast(View view) {
         Toast.makeText(this, "Bilangan Fibonacci",
                 Toast.LENGTH_SHORT).show();
     }
@@ -57,14 +54,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         long fibCurrent;
-        if (count == 0 || count == 1) {
-            fibCurrent = 1;
+        if (count == 0) {
+            fibCurrent = 0; // Fibonacci pertama adalah 0
+        } else if (count == 1) {
+            fibCurrent = 1; // Fibonacci kedua adalah 1
         } else {
-            fibCurrent = fibNMinus1 + fibNMinus2;
+            fibCurrent = fibN + fibNMinus1;
         }
 
-        fibNMinus2 = fibNMinus1;
-        fibNMinus1 = fibCurrent;
+        fibNMinus1 = fibN;
+        fibN = fibCurrent;
         updateCountDisplay();
 
         count++;
@@ -72,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void back1(View view) {
         count = 0;
+        fibN = 0;
         fibNMinus1 = 1;
-        fibNMinus2 = 0;
         updateCountDisplay();
     }
 }

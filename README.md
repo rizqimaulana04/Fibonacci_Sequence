@@ -154,75 +154,73 @@
  import androidx.appcompat.app.AppCompatActivity;
 
  public class MainActivity extends AppCompatActivity {
-    private TextView showCount;
-    private int count = 0;
-    private long fibNMinus1 = 1;
-    private long fibNMinus2 = 0;
-    private EditText edit_max_fibonacci;
+     private TextView showCount;
+     private int count = 0;
+     private long fibN = 0; // Mengubah inisialisasi Fibonacci
+     private long fibNMinus1 = 1;
+     private EditText edit_max_fibonacci;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fibonancci);
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_fibonancci);
 
-        showCount = findViewById(R.id.show_count);
-        edit_max_fibonacci = findViewById(R.id.edit_max_fibonacci);
+         showCount = findViewById(R.id.show_count);
+         edit_max_fibonacci = findViewById(R.id.edit_max_fibonacci);
 
-        updateCountDisplay();
+         updateCountDisplay();
+     }
 
-        fibNMinus1 = 1;
-        fibNMinus2 = 0;
-    }
+     private void updateCountDisplay() {
+         showCount.setText(String.valueOf(fibN));
 
-    private void updateCountDisplay() {
-        showCount.setText(String.valueOf(fibNMinus1));
+         if (count % 4 == 0) {
+             showCount.setTextColor(getResources().getColor(R.color.colorPrimary));
+         } else if (count % 4 == 1) {
+             showCount.setTextColor(getResources().getColor(R.color.colorAccent));
+         } else if (count % 4 == 2) {
+             showCount.setTextColor(getResources().getColor(R.color.colorPrimary));
+         } else {
+             showCount.setTextColor(getResources().getColor(R.color.colorAccent));
+         }
+     }
 
-        if (count % 4 == 0) {
-            showCount.setTextColor(getResources().getColor(R.color.colorPrimary));
-        } else if (count % 4 == 1) {
-            showCount.setTextColor(getResources().getColor(R.color.colorAccent));
-        } else if (count % 4 == 2) {
-            showCount.setTextColor(getResources().getColor(R.color.colorPrimary));
-        } else {
-            showCount.setTextColor(getResources().getColor(R.color.colorAccent));
-        }
-    }
+     public void showToast(View view) {
+         Toast.makeText(this, "Bilangan Fibonacci",
+                 Toast.LENGTH_SHORT).show();
+     }
 
-    public void showToast(View view){
-        Toast.makeText(this, "Bilangan Fibonacci",
-                Toast.LENGTH_SHORT).show();
-    }
+     public void countUp(View view) {
+         int maxFibonacci = Integer.parseInt(edit_max_fibonacci.getText().toString());
 
-    public void countUp(View view) {
-        int maxFibonacci = Integer.parseInt(edit_max_fibonacci.getText().toString());
+         if (count >= maxFibonacci) {
+             Toast.makeText(this, "Maksimum Fibonacci tercapai", Toast.LENGTH_SHORT).show();
+             return;
+         }
 
-        if (count >= maxFibonacci) {
-            Toast.makeText(this, "Maksimum Fibonacci tercapai", Toast.LENGTH_SHORT).show();
-            return;
-        }
+         long fibCurrent;
+         if (count == 0) {
+             fibCurrent = 0; // Fibonacci pertama adalah 0
+         } else if (count == 1) {
+             fibCurrent = 1; // Fibonacci kedua adalah 1
+         } else {
+             fibCurrent = fibN + fibNMinus1;
+         }
 
-        long fibCurrent;
-        if (count == 0 || count == 1) {
-            fibCurrent = 1;
-        } else {
-            fibCurrent = fibNMinus1 + fibNMinus2;
-        }
+         fibNMinus1 = fibN;
+         fibN = fibCurrent;
+         updateCountDisplay();
 
-        fibNMinus2 = fibNMinus1;
-        fibNMinus1 = fibCurrent;
-        updateCountDisplay();
+         count++;
+     }
 
-        count++;
-    }
-
-    public void back1(View view) {
-        count = 0;
-        fibNMinus1 = 1;
-        fibNMinus2 = 0;
-        updateCountDisplay();
-    }
+     public void back1(View view) {
+         count = 0;
+         fibN = 0;
+         fibNMinus1 = 1;
+         updateCountDisplay();
+     }
  }
-
  ```
 
 ## Penjelasan **MainActivity.java**
@@ -315,43 +313,6 @@ public void countUp(View view) {
 
 ## TAMPILAN PROGRAM SAAT DI RUN
 
-- Tampilan awal<br>
-    ![img](gambar/1.png)<br>
-    <br>
-    <br>
-- Tampilan saat menginput Maksimal Fibonacci. Disini saya memberi contoh input "5"<br>
-    ![img](gambar/2.png)<br>
-    <br>
-    <br>
-
-- Tampilan Bilangan Fibonacci **Pertama** atau sama saja belum menekan button Count<br>
-    ![img](gambar/3.png)<br>
-    <br>
-    <br>
-
-- Tampilan Bilangan Fibonacci **kedua** setelah menekan button Count<br>
-    ![img](gambar/4.png)<br>
-    <br>
-    <br>
-
-- Tampilan Bilangan Fibonacci **ketiga** setelah menekan button Count<br>
-    ![img](gambar/5.png)<br>
-    <br>
-    <br>
-
-- Tampilan Bilangan Fibonacci **keempat** setelah menekan button Count<br>
-    ![img](gambar/6.png)<br>
-    <br>
-    <br>
-
-- Tampilan Bilangan Fibonacci **kelima** setelah menekan button Count<br>
-    ![img](gambar/7.png)<br>
-    <br>
-    <br>
-
-- Tampilan Bilangan Fibonacci jika sudah mencapai **Maks** yang sudah diinput. Jadi dibagian bawah ada pesan "Maksimum Fibonacci Tercapai" dan tidak dapat dilanjutkan lagi bilangan fibonacci tersebut<br>
-    ![img](gambar/8.png)<br>
-    <br>
-    <br>
+   ![video](gambar/Hasil.mp4)<br>
 
 ## **FINISH**
